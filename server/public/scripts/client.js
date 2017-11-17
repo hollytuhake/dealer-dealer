@@ -31,6 +31,33 @@ myApp.config(function($routeProvider, $locationProvider) {
         }
       }
     })
+    .when('/dealers', {
+      templateUrl: 'views/templates/dealers.html',
+      controller: 'DealerController as dc',
+      resolve: {
+        getuser: function (UserService) {
+          return UserService.getuser();
+        }
+      }
+    })
+    .when('/orders', {
+      templateUrl: 'views/templates/orders.html',
+      controller: 'OrderController as oc',
+      resolve: {
+        getuser: function (UserService) {
+          return UserService.getuser();
+        }
+      }
+    })
+    .when('/products', {
+      templateUrl: 'views/templates/products.html',
+      controller: 'ProductController as pc',
+      resolve: {
+        getuser: function (UserService) {
+          return UserService.getuser();
+        }
+      }
+    }) 
     .otherwise({
       redirectTo: 'home'
     });

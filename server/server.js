@@ -9,6 +9,9 @@ var sessionConfig = require('./modules/session.config');
 var indexRouter = require('./routes/index.router');
 var userRouter = require('./routes/user.router');
 var registerRouter = require('./routes/register.router');
+var dealers = require('./routes/dealer.router.js');
+var orders = require('./routes/order.router.js');
+var products = require('./routes/product.router.js');
 
 var port = process.env.PORT || 5000;
 
@@ -29,6 +32,9 @@ app.use(passport.session());
 // Routes
 app.use('/register', registerRouter);
 app.use('/user', userRouter);
+app.use('/dealers', dealers);
+app.use('/orders', orders);
+app.use('/products', products);
 
 // Catch all bucket, must be last!
 app.use('/', indexRouter);
