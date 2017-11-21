@@ -1,6 +1,6 @@
 <div ng-include="'views/partials/nav.html'"></div>
 <h1 class="viewheader">DEALERS</h1>
-<button ng-click="dc.showFormClick()">Add Dealer</button>
+<button class="md-raised md-primary" ng-click="dc.showFormClick()">Add Dealer</button>
 <div class="container">
     <div class="content">
         <form id="dealerForm" ng-show="dc.showForm" ng-submit="dc.addDealer(dc.dealerToAdd)">
@@ -28,7 +28,7 @@
             <br>
             <label>Lead Source:<input type="text" ng-model="dc.dealerToAdd.leadsource"></label>
             <br>
-            <input type="submit">
+            <input class="md-raised md-primary" type="submit">
         </form>
         <table>
             <thead>

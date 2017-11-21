@@ -39,7 +39,7 @@ router.post('/', function (req, res) {
             console.log('Error connecting', errorConnectingToDb);
             res.sendStatus(500);
         } else {
-            // COnnected to DB, pool -1
+            // Connected to DB, pool -1
             var queryText = 'INSERT INTO "dealers" ("name", "discount", "country", "state", "city", "notes", "shippingpref", "shippingcontact", "marketingcontact", "paymentcontact", "streetaddress", "leadsource") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12);';
             db.query(queryText, [
                 dealer.name, 

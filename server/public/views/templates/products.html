@@ -1,78 +1,64 @@
 <div ng-include="'views/partials/nav.html'"></div>
 <h1 class="viewheader">PRODUCTS</h1>
-<button ng-click="pc.showFormClick()">Add Product</button>
+
 <div class="container">
     <div class="content">
-        <form id="productForm" ng-show="pc.showForm" ng-submit="pc.addProduct(pc.productToAdd)">
-            <label>Name:
-                <input type="text" ng-model="pc.dealerToAdd.name">
-            </label>
+        <div ng-show="pc.showProducts">
+            <button ng-click="pc.showFormClick()">Add Product</button>
+            <form id="productForm" ng-show="pc.showForm" ng-submit="pc.addProduct(pc.productToAdd)">
+                <label>Name: <input type="text" ng-model="pc.productToAdd.name"></label>
+                <br>
+                <label>Cost To Make:<input type="number" ng-model="pc.productToAdd.costtomake"></label>
+                <br>
+                <label>Direct Price:<input type="number" ng-model="pc.productToAdd.directprice"></label>
+                <br>
+                <label>Dealer Price:<input type="number" ng-model="pc.productToAdd.dealerprice"></label>
+                <br>
+                <label>Distribution Price:<input type="number" ng-model="pc.productToAdd.distroprice"></label>
+                <br>
+                <label>UPC:<input type="number" ng-model="pc.productToAdd.upc"></label>           
+                <br>
+                <input type="submit">
+            </form>
+            <table>
+                <thead>
+                    <th>Name</th>
+                    <th>Cost To Make</th>
+                    <th>Direct Price</th>
+                    <th>Dealer Price</th>
+                    <th>Distributor Price</th>
+                    <th>UPC</th>
+                    <th>Action</th>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="product in pc.products">
+                        <td>{{product.name}}</td>
+                        <td>{{product.costtomake}}</td>
+                        <td>{{product.directprice}}</td>
+                        <td>{{product.dealerprice}}</td>
+                        <td>{{product.distroprice}}</td>
+                        <td>{{product.upc}}</td>
+                        <td><button ng-click="pc.showUpdateForm(product)">Update</button><button ng-click="pc.deleteProduct(product.id)">Delete</button></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <form ng-show="pc.showUpdate" ng-submit="pc.updateProduct(pc.productToUpdate)">
+            <h2>Updating:</h2>
+            <h1> {{pc.productToUpdate.name}}</h1>
+            <label>Name:<input type="text" ng-model="pc.productToUpdate.name"></label>
             <br>
-            <label>Discount:
-                <input type="number" ng-model="dc.dealerToAdd.discount">
-            </label>
+            <label>Cost To Make:<input type="number" ng-model="pc.productToUpdate.costtomake"></label>
             <br>
-            <label>Country:
-                <input type="text" ng-model="dc.dealerToAdd.country">
-            </label>
+            <label>Direct Price:<input type="number" ng-model="pc.productToUpdate.directprice"></label>
             <br>
-            <label>State:
-                <input type="text" ng-model="dc.dealerToAdd.state">
-            </label>
+            <label>Dealer Price:<input type="number" ng-model="pc.productToUpdate.dealerprice"></label>
             <br>
-            <label>City:
-                <input type="text" ng-model="dc.dealerToAdd.city">
-            </label>
+            <label>Distribution Price:<input type="number" ng-model="pc.productToUpdate.distroprice"></label>
             <br>
-            <label>Notes:
-                <input type="text" ng-model="dc.dealerToAdd.notes">
-            </label>
-            <br>
-            <label>Shipping Preference:
-                <input type="text" ng-model="dc.dealerToAdd.shippingpref">
-            </label>
-            <br>
-            <label>Shipping Contact:
-                <input type="text" ng-model="dc.dealerToAdd.shippingcontact">
-            </label>
-            <br>
-            <label>Marketing Contact:
-                <input type="text" ng-model="dc.dealerToAdd.marketingcontact">
-            </label>
-            <br>
-            <label>Payment Contact:
-                <input type="text" ng-model="dc.dealerToAdd.paymentcontact">
-            </label>
-            <br>
-            <label>Street Address:
-                <input type="text" ng-model="dc.dealerToAdd.streetaddress">
-            </label>
-            <br>
-            <label>Lead Source:
-                <input type="text" ng-model="dc.dealerToAdd.leadsource">
-            </label>
+            <label>UPC:<input type="text" ng-model="pc.productToUpdate.upc"></label>
             <br>
             <input type="submit">
         </form>
-        <table>
-            <thead>
-                <th>Name</th>
-                <th>Cost To Make</th>
-                <th>Direct Price</th>
-                <th>Dealer Price</th>
-                <th>Distributor Price</th>
-                <th>UPC</th>
-            </thead>
-            <tbody>
-                <tr ng-repeat="product in pc.products">
-                    <td>{{product.name}}</td>
-                    <td>{{product.costtomake}}</td>
-                    <td>{{product.directprice}}</td>
-                    <td>{{product.dealerprice}}</td>
-                    <td>{{product.distroprice}}</td>
-                    <td>{{product.upc}}</td>
-                </tr>
-            </tbody>
-        </table>
     </div>
 </div>
