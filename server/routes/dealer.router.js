@@ -69,4 +69,47 @@ router.post('/', function (req, res) {
     }); // END POOL
 }); // END POST ROUTE
 
+// PUT (UPDATE) route
+router.put('/:did', function (req, res) {
+    // product/4 will assign req.params.did = 4;
+    var dealerId = req.params.did;
+    var dealer = req.body;
+    // Attempt to connect to the database
+    pool.connect(function (errorConnectingToDb, db, done) {
+        if (errorConnectingToDb) {
+            // There was an error and no connection was made
+            console.log('Error connecting', errorConnectingToDb);
+            res.sendStatus(500);
+        } else {
+            // Connected to the db, pool -1
+            var queryText = 'UPDATE "dealers" SET "name" = $2, "discount" =$3, "country" = $4, "state" = $5, "city" = $6, "notes" = $7, "shippingpref" = $8, "shippingcontact" = $9, "marketingcontact" = $10, "paymentcontact" = $11, "streetaddress" = $12, "leadsource" = $13 WHERE "id" = $1;';
+            db.query(queryText, [
+                dealerId,
+                dealer.name,
+                dealer.discount,
+                dealer.country,
+                dealer.state,
+                dealer.city,
+                dealer.notes,
+                dealer.shippingpref,
+                dealer.shippingcontact,
+                dealer.marketingcontact,
+                dealer.paymentcontact,
+                dealer.streetaddress,
+                dealer.leadsource], 
+                function (errorMakingQuery, result) {
+                // We have received an error or result at this point
+                done(); // pool +1
+                if (errorMakingQuery) {
+                    console.log('Error making query', errorMakingQuery);
+                    res.sendStatus(500);
+                } else {
+                    console.log(result.rows);
+                    res.send(result.rows);
+                }
+            }); // END QUERY
+        }
+    }); // END POOL
+}); // END PUT ROUTE
+
 module.exports = router;

@@ -92,7 +92,7 @@ router.delete('/:pid', function (req, res) {
 
 // PUT (UPDATE) route
 router.put('/:pid', function (req, res) {
-    // product/4 will assign req.params.sid = 4;
+    // product/4 will assign req.params.pid = 4;
     var productId = req.params.pid;
     var product = req.body;
     // Attempt to connect to the database
@@ -102,7 +102,7 @@ router.put('/:pid', function (req, res) {
             console.log('Error connecting', errorConnectingToDb);
             res.sendStatus(500);
         } else {
-            // We connected to the db!!!!! pool -1
+            // Connected to the db, pool -1
             var queryText = 'UPDATE "products" SET "name" = $2, "costtomake" =$3, "directprice" = $4, "dealerprice" = $5, "distroprice" = $6, "upc" = $7 WHERE "id" = $1;';
             db.query(queryText, [productId, product.name, product.costtomake, product.directprice, product.dealerprice, product.distroprice, product.upc], function (errorMakingQuery, result) {
                 // We have received an error or result at this point

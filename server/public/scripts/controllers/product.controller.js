@@ -7,14 +7,7 @@ myApp.controller('ProductController', ['$http', 'UserService', function ($http, 
     vm.userService = UserService;
     vm.showUpdate = false;
     vm.showProducts = true;
-    vm.productToUpdate = {
-        // name: 'name',
-        // costtomake: 75,
-        // directprice: 150,
-        // dealerprice: 115,
-        // distroprice: 100,
-        // upc: 123456748647
-    };
+    vm.productToUpdate = {};
 
 
        //GET ROUTES -- get products for DOM
@@ -67,8 +60,8 @@ myApp.controller('ProductController', ['$http', 'UserService', function ($http, 
     vm.updateProduct = function (updatingProduct){
         console.log('update submit clicked');
         $http.put('/products/'+ updatingProduct.id, updatingProduct).then(function (req, res) {
-            console.log('adding product');
-            alert('Product Added');
+            console.log('product updated');
+            alert('Product Updated');
             vm.getProducts();
         }).catch(function (err) {
             console.log('Update Product Failed!');

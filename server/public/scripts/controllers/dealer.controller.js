@@ -4,7 +4,10 @@ myApp.controller('DealerController', ['$http', 'UserService', function ($http, U
     vm.userService = UserService;
     vm.showForm = false;
     vm.dealerToAdd = {
-     };
+    };
+    vm.showDealers = true;
+    vm.showUpdateForm = false;
+    vm.dealerToUpdate = {};
 
 //    GET ROUTES -- get dealers for DOM
    vm.getDealers = function (){ //getting data
@@ -16,6 +19,13 @@ myApp.controller('DealerController', ['$http', 'UserService', function ($http, U
 
     vm.showFormClick = function(){
         vm.showForm = !vm.showForm;
+    }
+
+    vm.showUpdateForm = function(dealer){
+        vm.dealerToUpdate = dealer
+        console.log(vm.dealerToUpdate);
+        vm.showDealerUpdate = !vm.showDealerUpdate;
+        vm.showDealers = !vm.showDealers;
     }
 
     //    POST ROUTES -- post new dealer
@@ -31,6 +41,25 @@ myApp.controller('DealerController', ['$http', 'UserService', function ($http, U
         });
         vm.getDealers();
     }
+
+    vm.deleteDealer = function(dealerToDelete){
+        console.log(dealerToDelete);
+    };
+
+    vm.updateDealer = function (updatingDealer){
+        console.log('update dealer submit clicked');
+        $http.put('/dealers/' + updatingDealer.id, updatingDealer).then(function (req, res) {
+            alert('Dealer Updated');
+            vm.getDealers();
+        }).catch(function (err) {
+            console.log('Update Dealer Failed!');
+            alert('Update Dealer failed, try again.');
+        });
+        console.log("dealer to update", updatingDealer);
+        vm.showDealerUpdate = !vm.showDealerUpdate;
+        vm.showDealers = !vm.showDealers;
+    }
+
 
     vm.getDealers();
 }]);
