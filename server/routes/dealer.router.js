@@ -112,4 +112,30 @@ router.put('/:did', function (req, res) {
     }); // END POOL
 }); // END PUT ROUTE
 
+router.delete('/:did', function (req, res) {
+    console.log('in Delete Dealer in Router');
+    var dealerId = req.params.did;
+    // Attempt to connect to the database
+    pool.connect(function (errorConnectingToDb, db, done) {
+        if (errorConnectingToDb) {
+            // There was an error and no connection was made
+            console.log('Error connecting', errorConnectingToDb);
+            res.sendStatus(500);
+        } else {
+            // connected to the db, pool -1
+            var queryText = 'DELETE from "dealers" WHERE "id" = $1;';
+            db.query(queryText, [dealerId], function (errorMakingQuery, result) {
+                // We have received an error or result at this point
+                done(); // pool +1
+                if (errorMakingQuery) {
+                    console.log('Error making query', errorMakingQuery);
+                    res.sendStatus(500);
+                } else {
+                    res.send(result.rows);
+                }
+            }); // END QUERY
+        }
+    }); // END POOL
+}); // END DELETE ROUTE
+
 module.exports = router;

@@ -8,13 +8,13 @@
             <form id="productForm" ng-show="pc.showForm" ng-submit="pc.addProduct(pc.productToAdd)">
                 <label>Name: <input type="text" ng-model="pc.productToAdd.name"></label>
                 <br>
-                <label>Cost To Make:<input type="number" ng-model="pc.productToAdd.costtomake"></label>
+                <label>Cost To Make:<input type="number" min="0" ng-model="pc.productToAdd.costtomake"></label>
                 <br>
-                <label>Direct Price:<input type="number" ng-model="pc.productToAdd.directprice"></label>
+                <label>Direct Price:<input type="number" min="0" ng-model="pc.productToAdd.directprice"></label>
                 <br>
-                <label>Dealer Price:<input type="number" ng-model="pc.productToAdd.dealerprice"></label>
+                <label>Dealer Price:<input type="number" min="0" ng-model="pc.productToAdd.dealerprice"></label>
                 <br>
-                <label>Distribution Price:<input type="number" ng-model="pc.productToAdd.distroprice"></label>
+                <label>Distribution Price:<input type="number" min="0" ng-model="pc.productToAdd.distroprice"></label>
                 <br>
                 <label>UPC:<input type="number" ng-model="pc.productToAdd.upc"></label>           
                 <br>

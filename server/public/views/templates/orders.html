@@ -5,30 +5,18 @@
     <div class="content">
         <div ng-show="oc.showOrders">
             <button ng-click="oc.showOrderFormClick()">Add Order</button>
-            <form id="orderForm" ng-show="oc.showOrderForm" ng-submit="oc.addOrder(pc.orderToAdd)">
-                <label>Name:
-                    <input type="text" ng-model="pc.productToAdd.name">
-                </label>
+            <form id="orderForm" ng-show="oc.showOrderForm" ng-submit="oc.addOrder(oc.orderToAdd)">
+                <label>Date Ordered:<input type="date" ng-model="oc.orderToAdd.dateordered"></label>
                 <br>
-                <label>Cost To Make:
-                    <input type="number" ng-model="pc.productToAdd.costtomake">
-                </label>
+                <label>Dealer ID:<input type="number" ng-model="oc.orderToAdd.dealer_id"></label>
                 <br>
-                <label>Direct Price:
-                    <input type="number" ng-model="pc.productToAdd.directprice">
-                </label>
+                <label>Quoted Lead Time:<input type="number" ng-model="oc.orderToAdd.quotedlead"></label>
                 <br>
-                <label>Dealer Price:
-                    <input type="number" ng-model="pc.productToAdd.dealerprice">
-                </label>
+                <label>Date Shipped:<input type="date" ng-model="oc.orderToAdd.shipdate"></label>
                 <br>
-                <label>Distribution Price:
-                    <input type="number" ng-model="pc.productToAdd.distroprice">
-                </label>
+                <label>Notes:<input type="text" ng-model="oc.orderToAdd.notes"></label>
                 <br>
-                <label>UPC:
-                    <input type="number" ng-model="pc.productToAdd.upc">
-                </label>
+                <label>Order Discounts:<input type="number" ng-model="oc.orderToAdd.discounts"></label>
                 <br>
                 <input type="submit">
             </form>

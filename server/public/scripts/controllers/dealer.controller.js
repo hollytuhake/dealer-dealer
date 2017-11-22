@@ -22,6 +22,19 @@ myApp.controller('DealerController', ['$http', 'UserService', function ($http, U
         vm.showForm = !vm.showForm;
     }
 
+    vm.deleteDealer = function (dealerId) {
+        console.log('in deleteDealer');
+        console.log(dealerId);
+        $http.delete('/dealers/' + dealerId).then(function (req, res) {
+            console.log('deleting dealer');
+            alert('Dealer Deleted');
+            vm.getDealers();
+        }).catch(function (err) {
+            console.log('delete Dealer Failed!');
+            alert('Delete dealer failed, try again.');
+        });
+    }
+
     vm.showUpdateForm = function(dealer){
         vm.dealerToUpdate = dealer
         console.log(vm.dealerToUpdate);
@@ -43,10 +56,6 @@ myApp.controller('DealerController', ['$http', 'UserService', function ($http, U
         vm.getDealers();
     }
 
-    vm.deleteDealer = function(dealerToDelete){
-        console.log(dealerToDelete);
-    };
-
     vm.updateDealer = function (updatingDealer){
         console.log('update dealer submit clicked');
         $http.put('/dealers/' + updatingDealer.id, updatingDealer).then(function (req, res) {
@@ -62,5 +71,5 @@ myApp.controller('DealerController', ['$http', 'UserService', function ($http, U
     }
 
     vm.getDealers();
-}]);
+    }]);
 

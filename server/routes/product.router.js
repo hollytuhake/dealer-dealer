@@ -65,7 +65,6 @@ router.post('/', function (req, res) {
 }); // END POST ROUTE
 
 router.delete('/:pid', function (req, res) {
-    // product/4 will assign req.params.sid = 4;
     var productId = req.params.pid;
     // Attempt to connect to the database
     pool.connect(function (errorConnectingToDb, db, done) {
@@ -74,7 +73,7 @@ router.delete('/:pid', function (req, res) {
             console.log('Error connecting', errorConnectingToDb);
             res.sendStatus(500);
         } else {
-            // We connected to the db!!!!! pool -1
+            // connected to the db, pool -1
             var queryText = 'DELETE from "products" WHERE "id" = $1;';
             db.query(queryText, [productId], function (errorMakingQuery, result) {
                 // We have received an error or result at this point
@@ -88,7 +87,7 @@ router.delete('/:pid', function (req, res) {
             }); // END QUERY
         }
     }); // END POOL
-}); // END GET ROUTE
+}); // END DELETE ROUTE
 
 // PUT (UPDATE) route
 router.put('/:pid', function (req, res) {

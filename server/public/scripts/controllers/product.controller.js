@@ -2,14 +2,22 @@ myApp.controller('ProductController', ['$http', 'UserService', function ($http, 
     console.log('ProductController created');
     var vm = this;
     vm.userService = UserService;
-
-    var vm = this;
-    vm.userService = UserService;
     vm.showUpdate = false;
     vm.showProducts = true;
     vm.productToUpdate = {};
 
+    vm.showFormClick = function () {
+        vm.showForm = !vm.showForm;
+    }
 
+    vm.showUpdateForm = function (product) {
+        vm.productToUpdate = product;
+        console.log('update clicked');
+        vm.showUpdate = !vm.showUpdate;
+        vm.showProducts = !vm.showProducts;
+        console.log(vm.productToUpdate);
+    }
+    
        //GET ROUTES -- get products for DOM
     vm.getProducts = function () { //getting data
         console.log('in getProducts');
@@ -18,9 +26,6 @@ myApp.controller('ProductController', ['$http', 'UserService', function ($http, 
         });
     }
 
-    vm.showFormClick = function () {
-        vm.showForm = !vm.showForm;
-    }
 
     //    POST ROUTES -- post new product
     vm.addProduct = function (productToAdd) {
@@ -34,14 +39,6 @@ myApp.controller('ProductController', ['$http', 'UserService', function ($http, 
             console.log('Add Product Failed!');
             alert('Product add failed, try again.');
         });
-    }
-
-    vm.showUpdateForm = function(product){
-        vm.productToUpdate = product;
-        console.log('update clicked');
-        vm.showUpdate = !vm.showUpdate;
-        vm.showProducts = !vm.showProducts;
-        console.log(vm.productToUpdate); 
     }
 
     vm.deleteProduct = function (productId) {
