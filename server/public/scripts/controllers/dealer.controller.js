@@ -9,6 +9,7 @@ myApp.controller('DealerController', ['$http', 'UserService', function ($http, U
     vm.showUpdateForm = false;
     vm.dealerToUpdate = {};
 
+
 //    GET ROUTES -- get dealers for DOM
    vm.getDealers = function (){ //getting data
         console.log('in getDealers');
@@ -59,7 +60,6 @@ myApp.controller('DealerController', ['$http', 'UserService', function ($http, U
         vm.showDealerUpdate = !vm.showDealerUpdate;
         vm.showDealers = !vm.showDealers;
     }
-
 
     vm.getDealers();
 }]);

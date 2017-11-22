@@ -1,6 +1,85 @@
 <div ng-include="'views/partials/nav.html'"></div>
+<h1 class="viewheader">ORDERS</h1>
+
 <div class="container">
-    <p>
-        ORDERS!
-    </p>
+    <div class="content">
+        <div ng-show="oc.showOrders">
+            <button ng-click="oc.showOrderFormClick()">Add Order</button>
+            <form id="orderForm" ng-show="oc.showOrderForm" ng-submit="oc.addOrder(pc.orderToAdd)">
+                <label>Name:
+                    <input type="text" ng-model="pc.productToAdd.name">
+                </label>
+                <br>
+                <label>Cost To Make:
+                    <input type="number" ng-model="pc.productToAdd.costtomake">
+                </label>
+                <br>
+                <label>Direct Price:
+                    <input type="number" ng-model="pc.productToAdd.directprice">
+                </label>
+                <br>
+                <label>Dealer Price:
+                    <input type="number" ng-model="pc.productToAdd.dealerprice">
+                </label>
+                <br>
+                <label>Distribution Price:
+                    <input type="number" ng-model="pc.productToAdd.distroprice">
+                </label>
+                <br>
+                <label>UPC:
+                    <input type="number" ng-model="pc.productToAdd.upc">
+                </label>
+                <br>
+                <input type="submit">
+            </form>
+            <table>
+                <thead>
+                    <th>Order Number</th>
+                    <th>Date Ordered</th>
+                    <th>Dealer ID</th>
+                    <th>Quoted Lead</th>
+                    <th>Ship By</th>
+                    <th>Shipped</th>
+                    <th>Notes</th>
+                    <th>Unique Discounts</th>
+                    <th>Total</th>
+                    <th>Action</th>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="order in oc.orders">
+                        <td>{{order.id}}</td>
+                        <td>{{order.dateordered}}</td>
+                        <td>{{order.dealer_id}}</td>
+                        <td>{{order.quotedlead}} days</td>
+                        <td>To Be Calculated</td>
+                        <td>{{order.shipdate}}</td>
+                        <td>{{order.notes}}</td>
+                        <td>${{order.discounts}}</td>
+                        <td>to be calculated</td>
+                        <td>
+                            <button ng-click="oc.showUpdateFormClick(order)">Edit</button>
+                            <button ng-click="oc.deleteOrder(order.id)">Delete</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <form ng-show="oc.showUpdateForm" ng-submit="oc.updateOrder(oc.orderToUpdate)">
+            <h2>Updating:</h2>
+            <h1> Order #{{oc.orderToUpdate.id}}</h1>
+            <label>Dealer:<input type="text" ng-model="oc.orderToUpdate.dealer_id"></label>
+            <br>
+            <label>Date Ordered:<input type="text" ng-model="oc.orderToUpdate.dateordered"></label>
+            <br>
+            <label>Quoted Lead:<input type="text" ng-model="oc.orderToUpdate.quotedlead"></label>
+            <br>
+            <label>Shipped Date:<input type="text" ng-model="oc.orderToUpdate.shipdate"></label>
+            <br>
+            <label>Notes:<input type="text" ng-model="oc.orderToUpdate.notes"></label>
+            <br>
+            <label>Discounts for Order:<input type="text" ng-model="oc.orderToUpdate.discounts"></label>
+            <br>
+            <input type="submit">
+        </form>
+    </div>
 </div>
