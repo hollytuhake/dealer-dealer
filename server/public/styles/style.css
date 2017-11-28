@@ -88,3 +88,9 @@ li a:hover {
 button, input {
   margin: 10px
 }
+
+#logo{
+  height: 100px;
+  text-align: right;
+  margin: 10px
+}
