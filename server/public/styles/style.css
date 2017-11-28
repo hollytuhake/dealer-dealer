@@ -85,21 +85,6 @@ li a:hover {
   margin-right:auto
 }
 
-td{
-  font-size: 75%
-}
-
-th, td{
-  text-align: center;
-  padding: 5px;
-  border: 1px solid black;
-}
-
-table {
-  border-collapse: collapse;
-  margin: 10px
-}
-
 button, input {
   margin: 10px
 }

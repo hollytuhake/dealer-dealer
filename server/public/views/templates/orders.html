@@ -1,10 +1,11 @@
 <div ng-include="'views/partials/nav.html'"></div>
 <h1 class="viewheader">ORDERS</h1>
 
+
 <div class="container">
     <div class="content">
         <div ng-show="oc.showOrders">
-            <button ng-click="oc.showOrderFormClick()">Add Order</button>
+            <md-button class="md-raised next-btn" ng-click="oc.showOrderFormClick()">Add Order</md-button>
             <form id="orderForm" ng-show="oc.showOrderForm" ng-submit="oc.addOrder(oc.orderToAdd)">
                 <label>Date Ordered:<input type="date" ng-model="oc.orderToAdd.dateordered"></label>
                 <br>
@@ -18,39 +19,49 @@
                 <br>
                 <label>Order Discounts:<input type="number" ng-model="oc.orderToAdd.discounts"></label>
                 <br>
-                <input type="submit">
+                <div ng-repeat="product in oc.products">
+                    <label>{{product.name}}:<input type="number" value=0></input></label>
+                    <br>
+                </div>
+                <md-button class="md-raised next-btn" type="submit">ADD</md-button>
             </form>
-            <table>
-                <thead>
-                    <th>Order Number</th>
-                    <th>Date Ordered</th>
-                    <th>Dealer ID</th>
-                    <th>Quoted Lead</th>
-                    <th>Ship By</th>
-                    <th>Shipped</th>
-                    <th>Notes</th>
-                    <th>Unique Discounts</th>
-                    <th>Total</th>
-                    <th>Action</th>
-                </thead>
-                <tbody>
-                    <tr ng-repeat="order in oc.orders">
-                        <td>{{order.id}}</td>
-                        <td>{{order.dateordered}}</td>
-                        <td>{{order.dealer_id}}</td>
-                        <td>{{order.quotedlead}} days</td>
-                        <td>To Be Calculated</td>
-                        <td>{{order.shipdate}}</td>
-                        <td>{{order.notes}}</td>
-                        <td>${{order.discounts}}</td>
-                        <td>to be calculated</td>
-                        <td>
-                            <button ng-click="oc.showUpdateFormClick(order)">Edit</button>
-                            <button ng-click="oc.deleteOrder(order.id)">Delete</button>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
+            <md-table-container>
+                <table md-table>
+                    <thead md-head>
+                        <th md-cell>Order Number</th>
+                        <th md-cell>Date Ordered</th>
+                        <th md-cell>Dealer ID</th>
+                        <th md-cell>Quoted Lead</th>
+                        <th md-cell>Ship By</th>
+                        <th md-cell ng-repeat="product in oc.products">{{product.name}}</th>
+                        <th md-cell>Shipped</th>
+                        <th md-cell>Notes</th>
+                        <th md-cell>Unique Discounts</th>
+                        <th md-cell>Total</th>
+                        <th md-cell>Action</th>
+                    </thead>
+                    <tbody md-body>
+                        <tr md-row ng-repeat="order in oc.orders">
+                            <td md-cell>{{order.id}}</td>
+                            <td md-cell>{{order.dateordered}}</td>
+                            <td md-cell>{{order.dealer_id}}</td>
+                            <td md-cell>{{order.quotedlead}} days</td>
+                            <td md-cell>TBD</td>
+                            <td md-cell>keep</td>
+                            <td md-cell>on</td>
+                            <td md-cell>trying</td>
+                            <td md-cell>{{order.shipdate}}</td>
+                            <td md-cell>{{order.notes}}</td>
+                            <td md-cell>${{order.discounts}}</td>
+                            <td md-cell>to be calculated</td>
+                            <td md-cell>
+                                <md-button class="md-raised next-btn" ng-click="oc.showUpdateFormClick(order)">Edit</md-button>
+                                <md-button class="md-raised md-warn" ng-click="oc.deleteOrder(order.id)">Delete</md-button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </md-table-container>
         </div>
         <form ng-show="oc.showUpdateForm" ng-submit="oc.updateOrder(oc.orderToUpdate)">
             <h2>Updating:</h2>

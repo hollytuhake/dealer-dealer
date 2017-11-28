@@ -1,12 +1,19 @@
-myApp.controller('OrderController', ['$http', 'UserService', function ($http, UserService) {
+myApp.controller('OrderController', ['$http', 'UserService','OrderProductsService', 'ProductService', function ($http, UserService, OrderProductsService, ProductService) {
     console.log('OrderController created');
     var vm = this;
     vm.userService = UserService;
+    vm.ops = OrderProductsService;
+    vm.productService = ProductService;
     vm.showOrders=true;
     vm.showOrderForm=false;
     vm.showUpdateForm = false
     vm.orderToUpdate = {};
-
+    vm.orderProducts = {};
+    vm.products = {};
+    
+    console.log(vm.productService.testPs);
+    console.log(vm.ops.testOs);
+    
     vm.showOrderFormClick = function (){
         console.log('in showOrderFormClick');
         vm.showOrderForm = !vm.showOrderForm;
@@ -24,8 +31,17 @@ myApp.controller('OrderController', ['$http', 'UserService', function ($http, Us
         console.log('in getOrders');
         $http.get('/orders').then(function (response) {
             vm.orders = response.data;
+            vm.ops.getOrderProducts();
+            vm.productService.getProducts();
+        }).then(function(){
+            vm.orderProducts = vm.ops.orderProducts;
+            console.log(vm.orderProducts);
+            vm.products = vm.productService.products;
+            console.log(vm.products);
         });
     }
+
+
 
     //    POST ROUTES -- post new order
     vm.addOrder = function (orderToAdd) {

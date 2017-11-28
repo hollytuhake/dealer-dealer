@@ -49,11 +49,11 @@ myApp.controller('DealerController', ['$http', 'UserService', function ($http, U
         $http.post('/dealers', dealerToAdd).then(function (req, res) {
             console.log('adding dealer');
             alert('Dealer Added');
+            vm.getDealers();
         }).catch(function (err) {
             console.log('Add Dealer Failed!');
             alert('Dealer add failed, try again.');
         });
-        vm.getDealers();
     }
 
     vm.updateDealer = function (updatingDealer){
