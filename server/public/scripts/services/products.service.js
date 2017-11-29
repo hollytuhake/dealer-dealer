@@ -34,7 +34,6 @@ myApp.service('ProductService', ['$http', 'UserService', function ($http, UserSe
         console.log(productId);
         $http.delete('/products/' + productId).then(function (req, res) {
             console.log('deleting product');
-            alert('Product Deleted');
         }).catch(function (err) {
             console.log('delete Product Failed!');
             alert('Delete product failed, try again.');
