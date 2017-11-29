@@ -32,8 +32,9 @@ myApp.controller('OrderController', ['$http', 'UserService','OrderProductsServic
         $http.get('/orders').then(function (response) {
             vm.orders = response.data;
             vm.ops.getOrderProducts();
-            vm.productService.getProducts();
+            vm.getProducts();
         }).then(function(){
+            console.log(vm.orders);
             vm.orderProducts = vm.ops.orderProducts;
             console.log(vm.orderProducts);
             vm.products = vm.productService.products;
@@ -41,6 +42,11 @@ myApp.controller('OrderController', ['$http', 'UserService','OrderProductsServic
         });
     }
 
+    vm.getProducts = function () {
+        ProductService.getProducts().then(function (response) {
+            vm.products = response.data;
+        })
+    }
 
 
     //    POST ROUTES -- post new order

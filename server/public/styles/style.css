@@ -28,6 +28,10 @@ body, html {
   margin-top : 14px;
 }
 
+.container{
+  margin-left: 10px
+}
+
 .message {
   padding: 10px 0;
 }
@@ -82,7 +86,8 @@ li a:hover {
 .viewheader{
   text-align: center;
   margin-left:auto; 
-  margin-right:auto
+  margin-right:auto;
+  color:#333333
 }
 
 button, input {
@@ -91,6 +96,20 @@ button, input {
 
 #logo{
   height: 100px;
-  text-align: right;
-  margin: 10px
+  margin: 10px;
+}
+
+table.md-table td.md-cell,
+table.md-table th.md-column {
+  vertical-align: middle;
+  text-align: middle;
+}
+
+table.md-table td.md-cell:last-child,
+table.md-table th.md-column:last-child {
+  padding: 0 0 0 0;
+}
+
+td{
+  text-align: center
 }

@@ -11,7 +11,7 @@ router.get('/', function (req, res) {
             console.log('error connecting on GET route', errorConnectingtoDB);
             res.sendStatus(501);
         } else {
-            var queryText = 'SELECT * FROM "orders";';
+            var queryText = 'SELECT "orders".*, array_agg("order_products"."quantity") as "quantities", array_agg("products"."name") as "productNames" FROM "orders" JOIN "order_products" ON "orders"."id" = "order_products"."order_id" JOIN "products" ON "order_products"."product_id" = "products"."id" GROUP BY "orders"."id";';
             db.query(queryText, function (errorMakingQuery, result) {
                 done();
                 if (errorMakingQuery) {

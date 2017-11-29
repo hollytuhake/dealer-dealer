@@ -8,27 +8,13 @@ myApp.service('ProductService', ['$http', 'UserService', function ($http, UserSe
     vm.products = {};
     vm.testPs = 'productservicegettingthere';
 
-    vm.showFormClick = function () {
-        vm.showForm = !vm.showForm;
-    }
-
-    vm.showUpdateForm = function (product) {
-        vm.productToUpdate = product;
-        console.log('update clicked');
-        vm.showUpdate = !vm.showUpdate;
-        vm.showProducts = !vm.showProducts;
-        console.log(vm.productToUpdate);
-    }
-
     //GET ROUTES -- get products for DOM
     vm.getProducts = function () { //getting data
         console.log('in getProducts');
-        $http.get('/products').then(function (response) {
-            vm.products = response.data;
-            console.log(vm.products);        
+        return $http.get('/products').then(function (response) {
+            return response;        
         });
     }
-
 
     //    POST ROUTES -- post new product
     vm.addProduct = function (productToAdd) {
@@ -37,7 +23,6 @@ myApp.service('ProductService', ['$http', 'UserService', function ($http, UserSe
         $http.post('/products', productToAdd).then(function (req, res) {
             console.log('adding product');
             alert('Product Added');
-            vm.getProducts();
         }).catch(function (err) {
             console.log('Add Product Failed!');
             alert('Product add failed, try again.');
@@ -68,9 +53,6 @@ myApp.service('ProductService', ['$http', 'UserService', function ($http, UserSe
             alert('Update Product failed, try again.');
         });
         console.log("product to update", updatingProduct);
-        vm.showUpdate = !vm.showUpdate;
-        vm.showProducts = !vm.showProducts;
     }
 
-    vm.getProducts();
 }]);

@@ -7,7 +7,7 @@ var pool = require('../modules/pool.js');
 
 //GET route to get products
 router.get('/', function (req, res) {
-    console.log('getting prodcuts');
+    console.log('getting products router');
     pool.connect(function (errorConnectingtoDB, db, done) {
         if (errorConnectingtoDB) {
             console.log('error connecting on GET route', errorConnectingtoDB);

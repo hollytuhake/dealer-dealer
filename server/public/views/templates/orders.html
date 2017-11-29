@@ -1,11 +1,13 @@
 <div ng-include="'views/partials/nav.html'"></div>
-<h1 class="viewheader">ORDERS</h1>
-
 
 <div class="container">
     <div class="content">
+        <span>
+            <h1 class="viewheader">ORDERS</h1>
+                <md-button class="md-raised next-btn addbutton" ng-click="oc.showOrderFormClick()">Add Order</md-button>
+        </span>
+        <br>
         <div ng-show="oc.showOrders">
-            <md-button class="md-raised next-btn" ng-click="oc.showOrderFormClick()">Add Order</md-button>
             <form id="orderForm" ng-show="oc.showOrderForm" ng-submit="oc.addOrder(oc.orderToAdd)">
                 <label>Date Ordered:<input type="date" ng-model="oc.orderToAdd.dateordered"></label>
                 <br>
@@ -33,27 +35,23 @@
                         <th md-cell>Dealer ID</th>
                         <th md-cell>Quoted Lead</th>
                         <th md-cell>Ship By</th>
-                        <th md-cell ng-repeat="product in oc.products">{{product.name}}</th>
+                        <th md-cell ng-repeat="product in oc.products" value={{product.name}}>{{product.name}}</th>
                         <th md-cell>Shipped</th>
                         <th md-cell>Notes</th>
                         <th md-cell>Unique Discounts</th>
-                        <th md-cell>Total</th>
                         <th md-cell>Action</th>
                     </thead>
                     <tbody md-body>
                         <tr md-row ng-repeat="order in oc.orders">
                             <td md-cell>{{order.id}}</td>
-                            <td md-cell>{{order.dateordered}}</td>
+                            <td md-cell>{{order.dateordered | date : "shortDate"}}</td>
                             <td md-cell>{{order.dealer_id}}</td>
                             <td md-cell>{{order.quotedlead}} days</td>
-                            <td md-cell>TBD</td>
-                            <td md-cell>keep</td>
-                            <td md-cell>on</td>
-                            <td md-cell>trying</td>
-                            <td md-cell>{{order.shipdate}}</td>
+                            <td md-cell>tbd</td>
+                            <td md-cell ng-repeat="product in oc.products">{{order.quantities[order.productNames.indexOf(product.name)]}}</td>
+                            <td md-cell>{{order.shipdate | date : "shortDate"}}</td>
                             <td md-cell>{{order.notes}}</td>
                             <td md-cell>${{order.discounts}}</td>
-                            <td md-cell>to be calculated</td>
                             <td md-cell>
                                 <md-button class="md-raised next-btn" ng-click="oc.showUpdateFormClick(order)">Edit</md-button>
                                 <md-button class="md-raised md-warn" ng-click="oc.deleteOrder(order.id)">Delete</md-button>
