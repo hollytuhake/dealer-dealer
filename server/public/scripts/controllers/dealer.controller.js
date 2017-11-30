@@ -8,7 +8,7 @@ myApp.controller('DealerController', ['$http', 'UserService', function ($http, U
     vm.showDealers = true;
     vm.showUpdateForm = false;
     vm.dealerToUpdate = {};
-
+    console.log(UserService.userObject);
 
 //    GET ROUTES -- get dealers for DOM
    vm.getDealers = function (){ //getting data
@@ -45,6 +45,8 @@ myApp.controller('DealerController', ['$http', 'UserService', function ($http, U
     //    POST ROUTES -- post new dealer
     vm.addDealer = function(dealerToAdd) {
         console.log('in addDealer');
+        console.log(dealerToAdd);
+        dealerToAdd.user_id=UserService.userObject.id;
         console.log(dealerToAdd);
         $http.post('/dealers', dealerToAdd).then(function (req, res) {
             console.log('adding dealer');

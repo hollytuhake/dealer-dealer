@@ -82,7 +82,7 @@ router.put('/:did', function (req, res) {
             res.sendStatus(500);
         } else {
             // Connected to the db, pool -1
-            var queryText = 'UPDATE "dealers" SET "name" = $2, "discount" =$3, "country" = $4, "state" = $5, "city" = $6, "notes" = $7, "shippingpref" = $8, "shippingcontact" = $9, "marketingcontact" = $10, "paymentcontact" = $11, "streetaddress" = $12, "leadsource" = $13 WHERE "id" = $1;';
+            var queryText = 'UPDATE "dealers" SET "name" = $2, "discount" =$3, "country" = $4, "state" = $5, "city" = $6, "notes" = $7, "shippingpref" = $8, "shippingcontact" = $9, "marketingcontact" = $10, "paymentcontact" = $11, "streetaddress" = $12, "leadsource" = $13, "user_id" = $14, WHERE "id" = $1;';
             db.query(queryText, [
                 dealerId,
                 dealer.name,
@@ -96,7 +96,8 @@ router.put('/:did', function (req, res) {
                 dealer.marketingcontact,
                 dealer.paymentcontact,
                 dealer.streetaddress,
-                dealer.leadsource], 
+                dealer.leadsource,
+                dealer.user_id], 
                 function (errorMakingQuery, result) {
                 // We have received an error or result at this point
                 done(); // pool +1

@@ -6,10 +6,17 @@ myApp.controller('OrderController', ['$http', 'UserService','OrderProductsServic
     vm.productService = ProductService;
     vm.showOrders=true;
     vm.showOrderForm=false;
+    vm.showOrderProductsForm = false;
     vm.showUpdateForm = false
     vm.orderToUpdate = {};
     vm.orderProducts = {};
     vm.products = {};
+    vm.orderToAdd = {};
+    vm.orderProductsToAdd = {
+        quantity: 0,
+    }
+    vm.orderId = 0
+
     
     console.log(vm.productService.testPs);
     console.log(vm.ops.testOs);
@@ -26,6 +33,12 @@ myApp.controller('OrderController', ['$http', 'UserService','OrderProductsServic
         vm.showUpdateForm = !vm.showUpdateForm;
     }
 
+    vm.showOrderProductsFormClick = function(){
+        vm.showOrderForm = !vm.showOrderForm;
+        vm.showOrderProductsForm = !vm.showOrderProductsForm;
+        vm.ops.getOrderProducts();
+    }
+
     //    GET ROUTES -- get orders for DOM
     vm.getOrders = function () { //getting data
         console.log('in getOrders');
@@ -39,6 +52,7 @@ myApp.controller('OrderController', ['$http', 'UserService','OrderProductsServic
             console.log(vm.orderProducts);
             vm.products = vm.productService.products;
             console.log(vm.products);
+            console.log(vm.orders);
         });
     }
 
@@ -56,11 +70,17 @@ myApp.controller('OrderController', ['$http', 'UserService','OrderProductsServic
         $http.post('/orders', orderToAdd).then(function (req, res) {
             console.log('adding order');
             alert('Order Added');
-            vm.getOrders();
+        }).then(function(orderToAdd){
+            vm.showOrderProductsFormClick();
         }).catch(function (err) {
             console.log('Add Order Failed!');
             alert('Order add failed, try again.');
         });
+    }
+
+    vm.addOrderProducts = function (orderId, products) {
+        vm.ops.addOrderProducts(vm.orderId, vm.products);
+        vm.getOrders();
     }
 
     vm.deleteOrder = function (orderId) {

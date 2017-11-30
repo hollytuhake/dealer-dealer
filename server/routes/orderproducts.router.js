@@ -11,7 +11,7 @@ router.get('/', function (req, res) {
             console.log('error connecting on GET route', errorConnectingtoDB);
             res.sendStatus(501);
         } else {
-            var queryText = 'SELECT * FROM "order_products";';
+            var queryText = 'SELECT * FROM "orders";';
             db.query(queryText, function (errorMakingQuery, result) {
                 done();
                 if (errorMakingQuery) {
@@ -25,6 +25,38 @@ router.get('/', function (req, res) {
         }
     });
 }); //End GET route to get orders
+
+router.post('/', function (req, res) {
+    console.log('in order router');
+
+    var orderProduct = req.body; // data sent
+    // Attempt to connect to the database
+    pool.connect(function (errorConnectingToDb, db, done) {
+        if (errorConnectingToDb) {
+            // There was an error and no connection was made
+            console.log('Error connecting', errorConnectingToDb);
+            res.sendStatus(500);
+        } else {
+            // Connected to DB, pool -1
+            var queryText = 'INSERT INTO "order_products" ("quantity", "order_id","product_id") VALUES ($1, $2, $3);';
+            db.query(queryText, [
+                orderProduct.quantity,
+                orderProduct.order_id,
+                orderProduct.product_id
+            ],
+                function (errorMakingQuery, result) {
+                    // We have received an error or result at this point
+                    done(); // pool +1
+                    if (errorMakingQuery) {
+                        console.log('Error making query', errorMakingQuery);
+                        res.sendStatus(500);
+                    } else {
+                        res.sendStatus(201);
+                    }
+                }); // END QUERY
+        }
+    }); // END POOL
+}); // END POST ROUTE
 
 // router.delete('/:id', function (req, res) {
 //     var orderproductId = req.params.id;

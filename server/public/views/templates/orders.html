@@ -21,12 +21,19 @@
                 <br>
                 <label>Order Discounts:<input type="number" ng-model="oc.orderToAdd.discounts"></label>
                 <br>
+                <md-button class="md-raised next-btn" type="submit">Create Order</md-button>
+            </form>
+        </div>
+        <div>
+            <form ng-submit="oc.addOrderProducts(vm.orderProductsToAdd, products)" ng-show="oc.showOrderProductsForm">
+                <p>{{orderToAdd.id}}</p>
                 <div ng-repeat="product in oc.products">
-                    <label>{{product.name}}:<input type="number" value=0></input></label>
+                    <label>{{product.name}}:<input type="number" ng-model="product.quantity"></input></label>
                     <br>
                 </div>
-                <md-button class="md-raised next-btn" type="submit">ADD</md-button>
+                <md-button class="md-raised next-btn" type="submit">Submit Order Quantities</md-button>
             </form>
+        </div>
             <md-table-container>
                 <table md-table>
                     <thead md-head>
@@ -35,7 +42,7 @@
                         <th md-cell>Dealer ID</th>
                         <th md-cell>Quoted Lead</th>
                         <th md-cell>Ship By</th>
-                        <th md-cell ng-repeat="product in oc.products" value={{product.name}}>{{product.name}}</th>
+                        <th md-cell ng-repeat="product in oc.products">{{product.name}}</th>
                         <th md-cell>Shipped</th>
                         <th md-cell>Notes</th>
                         <th md-cell>Unique Discounts</th>
