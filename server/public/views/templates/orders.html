@@ -4,16 +4,16 @@
     <div class="content">
         <span>
             <h1 class="viewheader">ORDERS</h1>
-                <md-button class="md-raised next-btn addbutton" ng-show="oc.showStart" ng-click="oc.showOrderFormClick()">Start New Order</md-button>
+                <md-button class="md-raised next-btn" id="addbutton" ng-show="oc.showStart" ng-click="oc.showOrderFormClick()">Start New Order</md-button>
         </span>
         <br>
-        <div ng-show="oc.showOrders">
+        <div>
             <form id="orderForm" ng-show="oc.showOrderForm" ng-submit="oc.addOrder(oc.orderToAdd)">
                 <label>Date Ordered:<input type="date" ng-model="oc.orderToAdd.dateordered"></label>
                 <br>
                 <label>Dealer ID:<input type="number" ng-model="oc.orderToAdd.dealer_id"></label>
                 <br>
-                <label>Quoted Lead Time:<input type="number" ng-model="oc.orderToAdd.quotedlead"></label>
+                <label>Quoted Days Lead Time:<input type="number" ng-model="oc.orderToAdd.quotedlead"></label>
                 <br>
                 <label>Date Shipped:<input type="date" ng-model="oc.orderToAdd.shipdate"></label>
                 <br>
@@ -34,7 +34,7 @@
                 <md-button class="md-raised next-btn" type="submit">Submit Order Quantities</md-button>
             </form>
         </div>
-            <md-table-container>
+            <md-table-container ng-show="oc.showOrders">
                 <table md-table>
                     <thead md-head>
                         <th md-cell>Order Number</th>

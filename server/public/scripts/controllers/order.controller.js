@@ -26,6 +26,7 @@ myApp.controller('OrderController', ['$http', 'UserService','OrderProductsServic
         console.log('in showOrderFormClick');
         vm.showOrderForm = !vm.showOrderForm;
         vm.showStart = !vm.showStart;
+        vm.showOrders = !vm.showOrders;
     }
 
     vm.showUpdateFormClick = function(order){
@@ -88,6 +89,7 @@ myApp.controller('OrderController', ['$http', 'UserService','OrderProductsServic
         vm.getOrders();
         vm.showStart = !vm.showStart;
         vm.showOrderProductsForm = !vm.showOrderProductsForm;
+        vm.showOrders = !vm.showOrders
     }
 
     vm.deleteOrder = function (orderId) {
