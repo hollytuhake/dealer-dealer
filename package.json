@@ -24,6 +24,7 @@
     "express-session": "^1.13.0",
     "jquery": "^2.1.4",
     "md-data-table": "^2.2.0",
+    "moment": "^2.19.3",
     "ng-sweet-alert": "^1.0.11",
     "passport": "^0.2.2",
     "passport-local": "^1.0.0",

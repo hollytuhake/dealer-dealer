@@ -54,7 +54,7 @@
                             <td md-cell>{{order.dateordered | date : "shortDate"}}</td>
                             <td md-cell>{{order.dealer_id}}</td>
                             <td md-cell>{{order.quotedlead}} days</td>
-                            <td md-cell>tbd</td>
+                            <td md-cell>{{order.shipby}}</td>
                             <td md-cell ng-repeat="product in oc.products">{{order.quantities[order.productNames.indexOf(product.name)]}}</td>
                             <td md-cell>{{order.shipdate | date : "shortDate"}}</td>
                             <td md-cell>{{order.notes}}</td>
