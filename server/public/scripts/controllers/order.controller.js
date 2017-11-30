@@ -55,10 +55,9 @@ myApp.controller('OrderController', ['$http', 'UserService','OrderProductsServic
             vm.products = vm.productService.products;
             console.log(vm.products);
             console.log(vm.orders);
-            // for(i=0; i<vm.orders.length; i+=1){
-            //     var newDate = 1000 * 60 * 60 * 24 * vm.orders[i].quotedlead + vm.orders.dateordered;
-            //     vm.orders[i].shipby = 
-            // }
+            for(i=0; i<vm.orders.length; i+=1){
+                vm.orders[i].shipby = moment(vm.orders[i].dateordered).add(vm.orders[i].quotedlead, 'days').format('MM/DD/YY');
+            }
         });
     }
 
