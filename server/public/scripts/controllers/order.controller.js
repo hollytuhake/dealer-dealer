@@ -15,7 +15,8 @@ myApp.controller('OrderController', ['$http', 'UserService','OrderProductsServic
     vm.orderProductsToAdd = {
         quantity: 0,
     }
-    vm.orderId = 0
+    vm.orderId = 0;
+    vm.showStart = true;
 
     
     console.log(vm.productService.testPs);
@@ -24,6 +25,7 @@ myApp.controller('OrderController', ['$http', 'UserService','OrderProductsServic
     vm.showOrderFormClick = function (){
         console.log('in showOrderFormClick');
         vm.showOrderForm = !vm.showOrderForm;
+        vm.showStart = !vm.showStart;
     }
 
     vm.showUpdateFormClick = function(order){
@@ -81,6 +83,8 @@ myApp.controller('OrderController', ['$http', 'UserService','OrderProductsServic
     vm.addOrderProducts = function (orderId, products) {
         vm.ops.addOrderProducts(vm.orderId, vm.products);
         vm.getOrders();
+        vm.showStart = !vm.showStart;
+        vm.showOrderProductsForm = !vm.showOrderProductsForm;
     }
 
     vm.deleteOrder = function (orderId) {

@@ -4,7 +4,7 @@
     <div class="content">
         <span>
             <h1 class="viewheader">ORDERS</h1>
-                <md-button class="md-raised next-btn addbutton" ng-click="oc.showOrderFormClick()">Start New Order</md-button>
+                <md-button class="md-raised next-btn addbutton" ng-show="oc.showStart" ng-click="oc.showOrderFormClick()">Start New Order</md-button>
         </span>
         <br>
         <div ng-show="oc.showOrders">
