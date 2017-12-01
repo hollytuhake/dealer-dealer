@@ -18,7 +18,8 @@ myApp.controller('OrderController', ['$http', 'UserService','OrderProductsServic
     vm.orderId = 0;
     vm.showStart = true;
 
-    
+    //SweetAlert.swal("Good job!", "This is a test!", "success");
+
     console.log(vm.productService.testPs);
     console.log(vm.ops.testOs);
     
@@ -34,6 +35,7 @@ myApp.controller('OrderController', ['$http', 'UserService','OrderProductsServic
         vm.orderToUpdate = order
         vm.showOrders = !vm.showOrders
         vm.showUpdateForm = !vm.showUpdateForm;
+        vm.showStart = !vm.showStart;
     }
 
     vm.showOrderProductsFormClick = function(){
@@ -116,6 +118,7 @@ myApp.controller('OrderController', ['$http', 'UserService','OrderProductsServic
         console.log("order to update", updatingOrder);
         vm.showOrders = !vm.showOrders
         vm.showUpdateForm = !vm.showUpdateForm;
+        vm.showStart = !vm.showStart;
     }
 
     vm.getOrders();

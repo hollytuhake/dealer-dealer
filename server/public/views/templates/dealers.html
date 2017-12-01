@@ -3,7 +3,7 @@
 <div class="container">
     <div class="content">
         <div>
-            <md-button class="md-raised md-next" ng-click="dc.showFormClick()">Add Dealer</md-button>
+            <md-button class="md-raised md-next" ng-show="dc.showAdd" ng-click="dc.showFormClick()">Add Dealer</md-button>
             <form id="dealerForm" ng-show="dc.showForm" ng-submit="dc.addDealer(dc.dealerToAdd)">
                 <label>Name:<input type="text" ng-model="dc.dealerToAdd.name"></label>
                 <br>

@@ -9,6 +9,7 @@ myApp.controller('DealerController', ['$http', 'UserService', function ($http, U
     vm.showUpdateForm = false;
     vm.dealerToUpdate = {};
     console.log(UserService.userObject);
+    vm.showAdd = true;
 
 //    GET ROUTES -- get dealers for DOM
    vm.getDealers = function (){ //getting data
@@ -21,6 +22,7 @@ myApp.controller('DealerController', ['$http', 'UserService', function ($http, U
     vm.showFormClick = function(){
         vm.showForm = !vm.showForm;
         vm.showDealers = !vm.showDealers;
+        vm.showAdd = !vm.showAdd;
     }
 
     vm.deleteDealer = function (dealerId) {
@@ -41,6 +43,7 @@ myApp.controller('DealerController', ['$http', 'UserService', function ($http, U
         console.log(vm.dealerToUpdate);
         vm.showDealerUpdate = !vm.showDealerUpdate;
         vm.showDealers = !vm.showDealers;
+        vm.showAdd = !vm.showAdd;
     }
 
     //    POST ROUTES -- post new dealer
@@ -55,6 +58,7 @@ myApp.controller('DealerController', ['$http', 'UserService', function ($http, U
             vm.getDealers();
             vm.showForm = !vm.showForm;
             vm.showDealers = !vm.showDealers;
+            vm.showAdd = !vm.showAdd;
         }).catch(function (err) {
             console.log('Add Dealer Failed!');
             alert('Dealer add failed, try again.');
@@ -66,6 +70,7 @@ myApp.controller('DealerController', ['$http', 'UserService', function ($http, U
         $http.put('/dealers/' + updatingDealer.id, updatingDealer).then(function (req, res) {
             alert('Dealer Updated');
             vm.getDealers();
+            vm.showAdd = !vm.showAdd;
         }).catch(function (err) {
             console.log('Update Dealer Failed!');
             alert('Update Dealer failed, try again.');

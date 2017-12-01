@@ -9,13 +9,13 @@
         <br>
         <div>
             <form id="orderForm" ng-show="oc.showOrderForm" ng-submit="oc.addOrder(oc.orderToAdd)">
-                <label>Date Ordered:<input type="date" ng-model="oc.orderToAdd.dateordered"></label>
+                <label>Date Ordered:<md-datepicker ng-model="oc.orderToAdd.dateordered"></md-datepicker></label>
                 <br>
                 <label>Dealer ID:<input type="number" ng-model="oc.orderToAdd.dealer_id"></label>
                 <br>
                 <label>Quoted Days Lead Time:<input type="number" ng-model="oc.orderToAdd.quotedlead"></label>
                 <br>
-                <label>Date Shipped:<input type="date" ng-model="oc.orderToAdd.shipdate"></label>
+                <label>Date Shipped:<md-datepicker type="date" ng-model="oc.orderToAdd.shipdate"></md-datepicker></label>
                 <br>
                 <label>Notes:<input type="text" ng-model="oc.orderToAdd.notes"></label>
                 <br>
@@ -73,11 +73,11 @@
             <h1> Order #{{oc.orderToUpdate.id}}</h1>
             <label>Dealer:<input type="text" ng-model="oc.orderToUpdate.dealer_id"></label>
             <br>
-            <label>Date Ordered:<input type="text" ng-model="oc.orderToUpdate.dateordered"></label>
+            <label>Date Ordered:<md-datepicker ng-model="oc.orderToUpdate.dateordered"></md-datepicker></label>
             <br>
             <label>Quoted Lead:<input type="text" ng-model="oc.orderToUpdate.quotedlead"></label>
             <br>
-            <label>Shipped Date:<input type="text" ng-model="oc.orderToUpdate.shipdate"></label>
+            <label>Shipped Date:<md-datepicker ng-model="oc.orderToUpdate.shipdate"></md-datepicker></label>
             <br>
             <label>Notes:<input type="text" ng-model="oc.orderToUpdate.notes"></label>
             <br>
