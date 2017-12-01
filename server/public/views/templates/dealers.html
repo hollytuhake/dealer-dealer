@@ -2,8 +2,8 @@
 <h1 class="viewheader">DEALERS</h1>
 <div class="container">
     <div class="content">
-        <div ng-show="dc.showDealers">
-            <button class="md-raised md-primary" ng-click="dc.showFormClick()">Add Dealer</button>
+        <div>
+            <md-button class="md-raised md-next" ng-click="dc.showFormClick()">Add Dealer</md-button>
             <form id="dealerForm" ng-show="dc.showForm" ng-submit="dc.addDealer(dc.dealerToAdd)">
                 <label>Name:<input type="text" ng-model="dc.dealerToAdd.name"></label>
                 <br>
@@ -29,46 +29,48 @@
                 <br>
                 <label>Lead Source:<input type="text" ng-model="dc.dealerToAdd.leadsource"></label>
                 <br>
-                <input class="md-raised md-primary" type="submit">
+                <md-button class="md-raised md-next" type="submit">Submit Dealer</md-button>
                 <br>
             </form>
-            <table>
-                <thead>
-                    <th>Dealer</th>
-                    <th>Discount</th>
-                    <th>Country</th>
-                    <th>State</th>
-                    <th>City</th>
-                    <th>Notes</th>
-                    <th>Ship Preference</th>
-                    <th>Ship Contact</th>
-                    <th>Marketing Contact</th>
-                    <th>Payment Contact</th>
-                    <th>Street Address</th>
-                    <th>Lead Source</th>
-                    <th>Action</th>
-                </thead>
-                <tbody>
-                    <tr ng-repeat="dealer in dc.dealers">
-                        <td>{{dealer.name}}</td>
-                        <td>{{dealer.discount}}</td>
-                        <td>{{dealer.country}}</td>
-                        <td>{{dealer.state}}</td>
-                        <td>{{dealer.city}}</td>
-                        <td>{{dealer.notes}}</td>
-                        <td>{{dealer.shippingpref}}</td>
-                        <td>{{dealer.shippingcontact}}</td>
-                        <td>{{dealer.marketingcontact}}</td>
-                        <td>{{dealer.paymentcontact}}</td>
-                        <td>{{dealer.streetaddress}}</td>
-                        <td>{{dealer.leadsource}}</td>
-                        <td>
-                            <button ng-click="dc.showUpdateForm(dealer)">Edit</button>
-                            <button ng-click="dc.deleteDealer(dealer.id)">Delete</button>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
+            <md-table-container ng-show="dc.showDealers">
+                <table md-table>
+                    <thead md-head>
+                        <th md-cell>Dealer</th>
+                        <th md-cell>Discount</th>
+                        <th md-cell>Country</th>
+                        <th md-cell>State</th>
+                        <th md-cell>City</th>
+                        <th md-cell>Notes</th>
+                        <th md-cell>Ship Preference</th>
+                        <th md-cell>Ship Contact</th>
+                        <th md-cell>Marketing Contact</th>
+                        <th md-cell>Payment Contact</th>
+                        <th md-cell>Street Address</th>
+                        <th md-cell>Lead Source</th>
+                        <th md-cell>Action</th>
+                    </thead>
+                    <tbody md-body>
+                        <tr md-row ng-repeat="dealer in dc.dealers">
+                            <td md-cell>{{dealer.name}}</td>
+                            <td md-cell>{{dealer.discount}}</td>
+                            <td md-cell>{{dealer.country}}</td>
+                            <td md-cell>{{dealer.state}}</td>
+                            <td md-cell>{{dealer.city}}</td>
+                            <td md-cell>{{dealer.notes}}</td>
+                            <td md-cell>{{dealer.shippingpref}}</td>
+                            <td md-cell>{{dealer.shippingcontact}}</td>
+                            <td md-cell>{{dealer.marketingcontact}}</td>
+                            <td md-cell>{{dealer.paymentcontact}}</td>
+                            <td md-cell>{{dealer.streetaddress}}</td>
+                            <td md-cell>{{dealer.leadsource}}</td>
+                            <td md-cell>
+                                <md-button class="md-raised next-btn" ng-click="dc.showUpdateForm(dealer)">Edit</md-button>
+                                <md-button class="md-raised md-warn" ng-click="dc.deleteDealer(dealer.id)">Delete</md-button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </md-table-container>
         </div>
         <form ng-show="dc.showDealerUpdate" ng-submit="dc.updateDealer(dc.dealerToUpdate)">
             <h2>Updating:</h2>

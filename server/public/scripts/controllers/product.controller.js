@@ -10,6 +10,7 @@ myApp.controller('ProductController', ['$http', 'UserService', 'ProductService',
 
     vm.showFormClick = function () {
         vm.showForm = !vm.showForm;
+        vm.showProducts = !vm.showProducts;
     }
 
     vm.showUpdateForm = function(product){
@@ -28,6 +29,8 @@ myApp.controller('ProductController', ['$http', 'UserService', 'ProductService',
     vm.addProduct = function (productToAdd) {
         ProductService.addProduct(productToAdd);
         vm.getProducts();
+        vm.showForm = !vm.showForm;
+        vm.showProducts = !vm.showProducts;
     }
 
 

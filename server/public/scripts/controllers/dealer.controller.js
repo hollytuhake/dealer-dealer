@@ -20,6 +20,7 @@ myApp.controller('DealerController', ['$http', 'UserService', function ($http, U
 
     vm.showFormClick = function(){
         vm.showForm = !vm.showForm;
+        vm.showDealers = !vm.showDealers;
     }
 
     vm.deleteDealer = function (dealerId) {
@@ -52,6 +53,8 @@ myApp.controller('DealerController', ['$http', 'UserService', function ($http, U
             console.log('adding dealer');
             alert('Dealer Added');
             vm.getDealers();
+            vm.showForm = !vm.showForm;
+            vm.showDealers = !vm.showDealers;
         }).catch(function (err) {
             console.log('Add Dealer Failed!');
             alert('Dealer add failed, try again.');

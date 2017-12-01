@@ -28,13 +28,13 @@ myApp.service('OrderProductsService', ['$http', 'UserService', function ($http, 
             };
             console.log(vm.orderProductToAdd);
             $http.post('/orderproducts', vm.orderProductToAdd).then(function (req, res) {
-                console.log('adding order quantities');
+                console.log('Order Added');
             }).catch(function (err) {
                 console.log('Add Quantities Failed!');
                 alert('Order Quantities failed, try again.');
             });
         }
-        alert('Order Quantities Added');
+        alert('Order Added');
     }
 
     vm.getOrderProducts();

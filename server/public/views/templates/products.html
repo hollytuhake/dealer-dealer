@@ -3,8 +3,8 @@
 
 <div class="container">
     <div class="content">
-        <div ng-show="pc.showProducts">
-            <button ng-click="pc.showFormClick()">Add Product</button>
+        <div>
+            <md-button ng-show="pc.showProducts" class="md-raised next-btn" ng-click="pc.showFormClick()">Add Product</md-button>
             <form id="productForm" ng-show="pc.showForm" ng-submit="pc.addProduct(pc.productToAdd)">
                 <label>Name: <input type="text" ng-model="pc.productToAdd.name"></label>
                 <br>
@@ -18,30 +18,34 @@
                 <br>
                 <label>UPC:<input type="number" ng-model="pc.productToAdd.upc"></label>           
                 <br>
-                <input type="submit">
+                <md-button class="md-raised next-btn" type="submit">Submit Product</md-button>
             </form>
-            <table>
-                <thead>
-                    <th>Name</th>
-                    <th>Cost To Make</th>
-                    <th>Direct Price</th>
-                    <th>Dealer Price</th>
-                    <th>Distributor Price</th>
-                    <th>UPC</th>
-                    <th>Action</th>
-                </thead>
-                <tbody>
-                    <tr ng-repeat="product in pc.products">
-                        <td>{{product.name}}</td>
-                        <td>{{product.costtomake}}</td>
-                        <td>{{product.directprice}}</td>
-                        <td>{{product.dealerprice}}</td>
-                        <td>{{product.distroprice}}</td>
-                        <td>{{product.upc}}</td>
-                        <td><button ng-click="pc.showUpdateForm(product)">Edit</button><button ng-click="pc.deleteProduct(product.id)">Delete</button></td>
-                    </tr>
-                </tbody>
-            </table>
+            <md-table-container ng-show="pc.showProducts">
+                <table md-table>
+                    <thead md-head>
+                        <th md-cell>Name</th>
+                        <th md-cell>Cost To Make</th>
+                        <th md-cell>Direct Price</th>
+                        <th md-cell>Dealer Price</th>
+                        <th md-cell>Distributor Price</th>
+                        <th md-cell>UPC</th>
+                        <th md-cell>Action</th>
+                    </thead>
+                    <tbody md-body>
+                        <tr md- row ng-repeat="product in pc.products">
+                            <td md-cell>{{product.name}}</td>
+                            <td md-cell>{{product.costtomake}}</td>
+                            <td md-cell>{{product.directprice}}</td>
+                            <td md-cell>{{product.dealerprice}}</td>
+                            <td md-cell>{{product.distroprice}}</td>
+                            <td md-cell>{{product.upc}}</td>
+                            <td md-cell>
+                                <md-button class="md-raised next-btn" ng-click="pc.showUpdateForm(product)">Edit</md-button>
+                                <md-button class="md-raised md-warn" ng-click="pc.deleteProduct(product.id)">Delete</md-button></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </md-table-container>
         </div>
         <form ng-show="pc.showUpdate" ng-submit="pc.updateProduct(pc.productToUpdate)">
             <h2>Updating:</h2>

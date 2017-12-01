@@ -75,7 +75,6 @@ myApp.controller('OrderController', ['$http', 'UserService','OrderProductsServic
         console.log(orderToAdd);
         $http.post('/orders', orderToAdd).then(function (req, res) {
             console.log('adding order');
-            alert('Order Added');
         }).then(function(orderToAdd){
             vm.showOrderProductsFormClick();
         }).catch(function (err) {
