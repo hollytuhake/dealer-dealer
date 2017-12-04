@@ -18,7 +18,7 @@ myApp.controller('OrderController', ['$http', 'UserService','OrderProductsServic
     vm.orderId = 0;
     vm.showStart = true;
 
-    //SweetAlert.swal("Good job!", "This is a test!", "success");
+   // SweetAlert.success(title, message);
 
     console.log(vm.productService.testPs);
     console.log(vm.ops.testOs);
